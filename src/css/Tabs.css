@@ -1,0 +1,195 @@
+.MuiAppBar-colorDefault {
+  background-color: #bd261e !important;
+  /* margin-top: -8px !important; */
+}
+
+.PrivateTabIndicator-colorPrimary-5
+ {
+  background-color: white !important;
+}
+.MuiButtonBase-root {
+  color: white !important;
+}
+.PrivateTabIndicator-colorPrimary-17 {
+  background-color: #ffffff !important;
+}
+.MuiSwitch-thumb {
+
+  background-color: #f99a56 !important;
+}
+.MuiPaper-rounded {
+  border-radius: 8px !important;
+}
+/* .MuiTab-wrapper, */
+.PrivateTabIndicator-colorPrimary-5,
+.PrivateTabIndicator-colorPrimary-6,
+.MuiTabs-indicator,
+.PrivateTabIndicator-root-8,
+.PrivateTabIndicator-colorPrimary-9
+/* .jss8, */
+/* .jss9  */
+{
+  /* color: white !important; */
+  font-size: 12px !important;
+  background-color: #fff;
+}
+.PrivateTabIndicator-colorPrimary-6 {
+  background-color: white !important;
+}
+.MuiTabs-flexContainer > span {
+  background-color: white !important;
+}
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+.MuiDataGrid-main > .MuiDataGrid-columnsContainer {
+  background-color: #e5e5e5 !important;
+  color: black !important;
+}
+body {
+  margin: 0px !important;
+}
+.MuiAppBar-colorPrimary {
+  color: rgb(0, 0, 0) !important;
+  background-color: #ffffff !important;
+}
+
+
+.PrivateTabIndicator-colorPrimary-9 {
+  background-color: #fff !important;
+}
+.jss16,.jss17,.jss23,.jss2 {
+  color: white !important
+}
+
+@media (max-width: 500px) {
+  /* .jss12 {
+    padding: 5px !important;
+  } */
+  #scrollable-auto-tabpanel-0 > div,
+  #scrollable-auto-tabpanel-1 > div,
+  #scrollable-auto-tabpanel-2 > div,
+  #scrollable-auto-tabpanel-3 > div,
+  #scrollable-auto-tabpanel-4 > div,
+  #scrollable-auto-tabpanel-5 > div,
+  #scrollable-auto-tabpanel-6 > div,
+  .MuiBox-root-13 {
+    padding: 6px !important;
+  }
+  canvas {
+    width: 116% !important;
+    height: 100% !important;
+    margin-left: -25px;
+  }
+
+}
+
+.rendering-zone{
+  font-size: 11px !important;
+}
+
+.MuiDataGrid-main > div:nth-child(1) {
+  color: white !important;
+  display: none !important;
+}
+
+.MuiButton-containedSecondary:hover {
+  background-color: #c74640 !important;
+}
+
+.MuiTablePagination-actions>button>span{
+  color:black !important
+}
+
+#menu-list-grow>li{
+  color: black !important;
+}
+
+.MuiTab-wrapper {
+  width: 100% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  font-size: 11px !important;
+}
+.MuiDataGrid-toolbar>button{
+  color:black !important
+}
+.MuiDataGrid-toolbar>button>span{
+  font-size: 0.6rem !important;
+}
+.MuiList-root>li{
+  color: black !important;
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .MuiDataGrid-root{
+    font-size: 10px !important;
+  }
+  .MuiDataGridPanelWrapper-root {
+      width: 350px;
+}
+}
+
+.MuiLinearProgress-barColorPrimary {
+  background-color: #bf5b2f !important;
+}
+
+
+/* NUEVO ESTILO RESPONSIVE 5/2/2021*/ 
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .MuiDataGrid-root{
+    font-size: 10px !important;
+  }
+  .MuiDataGridPanelWrapper-root {
+      width: 350px;
+      }
+      #scrollable-auto-tabpanel-0 #GridCotProd{
+        
+        height: 180px   !important;
+      }
+      .App svg{
+        width: 315px !important;
+        margin-left: -90px !important;
+      }
+      .fondo > div:first-child{
+        display: none !important;justify-content: center !important;width: 90% !important;margin: auto !important;height: 402px !important;
+      }
+}
+
+.PrivateTabIndicator-colorPrimary-24 {
+  background-color: #ffffff !important;
+}
+
+.jss16, .jss17, .MuiTabs-indicator{
+  background: white !important;
+}
+
+#fecha_hasta,#fecha_desde{
+  font-size: 13px !important;
+}
+#btn_alert > .MuiButton-label{
+  color: #bd261e !important;
+}
+
+@media (max-width:550px){
+  .imgAppBar{
+    margin-left: 25% !important;
+    width: 150px
+  }
+  .salir{
+    margin-left: 20% !important;
+  }
+}
+
+.imgAppBar{
+  width: 150px;
+  margin-left: 45% ;
+}
+
+@media(max-width:420px){
+  #formLogin{
+    margin-top: 33% !important;
+  }
+ }

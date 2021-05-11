@@ -1,0 +1,36 @@
+POST http://186.24.0.83:5050/node/express/servicios/api/ResumenIngresosInverMe
+content-type: application/json
+
+{
+  "fecha_desde" : "05/10/2020",
+  "fecha_hasta" : "01/01/2021"
+}
+
+###
+POST http://186.24.0.83:5050/node/express/servicios/api/DetalleIngresosInverMe
+content-type: application/json
+
+{
+  "fecha_desde" : "05/10/2020",
+  "fecha_hasta" : "01/01/2021"
+}
+
+###
+POST http://186.24.0.83:5050/node/express/servicios/api/BuscaCotizaciones
+content-type: application/json
+
+{
+  "fecha_desde" : "05/10/2020",
+  "fecha_hasta" : "01/01/2021"
+}
+
+###
+
+POST http://186.24.0.83:5050/node/express/servicios/api/TotalesIngresosInverME
+content-type: application/json
+
+{ 
+   "fecha_desde":"05/10/2020",
+    "fecha_hasta":"19/02/2021",
+    "cCodOfi":"0" 
+}
