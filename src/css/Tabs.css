@@ -59,9 +59,9 @@ body {
 .PrivateTabIndicator-colorPrimary-9 {
   background-color: #fff !important;
 }
-.jss16,.jss17,.jss23,.jss2 {
+/* .jss16,.jss17,.jss23,.jss2 {
   color: white !important
-}
+} */
 
 @media (max-width: 500px) {
   /* .jss12 {
@@ -162,9 +162,16 @@ body {
   background-color: #ffffff !important;
 }
 
-.jss16, .jss17, .MuiTabs-indicator{
+  .MuiTabs-indicator{
   background: white !important;
 }
+/* .MuiSwitch-switchBase  .jss17{
+  background: white !important;
+} */
+/* .MuiSwitch-track {
+ 
+  background-color: #000 !important;
+} */
 
 #fecha_hasta,#fecha_desde{
   font-size: 13px !important;

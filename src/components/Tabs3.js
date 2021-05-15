@@ -82,7 +82,7 @@ export default function ScrollableTabsButtonAuto() {
       <TabPanel value={value} index={0}>
         <TabContent
           titulo="Recaudo de Divisas en Efectivo"
-          url={`${REACT_API_URL_DESA}/ResumenIngresosInverMe`}
+          url={`${REACT_API_URL_DESA}/ResumenIngresosME`}
           urlGraph=""
           urlGraph2=""
         />
@@ -90,7 +90,7 @@ export default function ScrollableTabsButtonAuto() {
       <TabPanel value={value} index={1}>
         <TabContent
           titulo="Recaudación Divisas-Efectivo-Sobrantes"
-          url={`${REACT_API_URL_DESA}/ResumenIngresosInverMe`}
+          url={`${REACT_API_URL_DESA}/ResumenIngresosME`}
           urlGraph=""
           urlGraph2=""
         />
@@ -98,7 +98,7 @@ export default function ScrollableTabsButtonAuto() {
       <TabPanel value={value} index={2}>
         <TabContent
           titulo="Recaudación Divisas - Efectivo - Faltantes"
-          url={`${REACT_API_URL_DESA}/ResumenIngresosInverMe`}
+          url={`${REACT_API_URL_DESA}/ResumenIngresosME`}
           urlGraph=""
           urlGraph2=""
         />
@@ -106,17 +106,17 @@ export default function ScrollableTabsButtonAuto() {
       <TabPanel value={value} index={3}>
         <TabContent
           titulo="Efectivo / Sobrantes / Faltantes"
-          url={`${REACT_API_URL_DESA}/ResumenIngresosInverMe`}
+          url={`${REACT_API_URL_DESA}/ResumenIngresosME`}
           urlGraph=""
           urlGraph2=""
-          TotalIngresosME="TotalesIngresosInverME"
-          ResumenIngresosME="ResumenIngresosInverME"
+          TotalIngresosME="TotalIngresosME"
+          ResumenIngresosME="ResumenIngresosME"
         />
       </TabPanel>
       <TabPanel value={value} index={4}>
         <TabContent
           titulo="Recaudación Divisas - Efectivo - Faltantes y Sobrantes"
-          url={`${REACT_API_URL_DESA}/DetalleIngresosInverMe`}
+          url={`${REACT_API_URL_DESA}/DetalleIngresosME`}
           urlGraph=""
           urlGraph2=""
         />

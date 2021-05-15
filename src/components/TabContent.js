@@ -93,9 +93,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function TabContent({ titulo, url, urlGraph, urlGraph2 }) {
-    //  const REACT_API_URL_DESA = "http://10.128.49.125:5000/recaudosApi";
-    const REACT_API_URL_DESA = "https://emergencia24horas.segurospiramide.com/node/express/servicios/api";
+function TabContent({ titulo, url, urlGraph, urlGraph2,TotalIngresosME,ResumenIngresosME }) {
+    // const REACT_API_URL_DESA = "http://10.128.49.125:5000/recaudosApi";
+   const REACT_API_URL_DESA = "https://emergencia24horas.segurospiramide.com/node/express/servicios/api";
 
    const classes = useStyles();
   var fecha_hasta = new Date();
@@ -211,7 +211,7 @@ setIsLoad(false);
         const actualiza =async () =>{
          // const valorActualSelect = document.getElementById("listaAgencias").value
          // alert(valorActualSelect)
-          const resTotalIngresos = await axios.post(`${REACT_API_URL_DESA}/TotalesIngresosInverME`, {...value, "cCodOfi":oficina}, { cancelToken: source.token })
+          const resTotalIngresos = await axios.post(`${REACT_API_URL_DESA}/${TotalIngresosME}`, {...value, "cCodOfi":oficina}, { cancelToken: source.token })
           // responsePromise.push(resTotalIngresos);
           if (isMounted) setdtosAgencias(resTotalIngresos.data)
         // await setdtosAgencias(resTotalIngresos.data)
@@ -240,7 +240,7 @@ setIsLoad(false);
       if(titulo === "Efectivo / Sobrantes / Faltantes"){
        
        const actualiza =async () =>{
-         const resTotalIngresos = await axios.post(`${REACT_API_URL_DESA}/TotalesIngresosInverME`, {...value, "cCodOfi":oficina} , { cancelToken: source.token })
+         const resTotalIngresos = await axios.post(`${REACT_API_URL_DESA}/${TotalIngresosME}`, {...value, "cCodOfi":oficina} , { cancelToken: source.token })
          if (isMounted) setdtosAgencias(resTotalIngresos.data)
   
        }    
@@ -300,10 +300,10 @@ setIsLoad(false);
           }
     
           if(titulo === "Efectivo / Sobrantes / Faltantes"){
-              const resAgencias = axios.post(`${REACT_API_URL_DESA}/ResumenIngresosInverME`, value, { cancelToken: source.token });
+              const resAgencias = axios.post(`${REACT_API_URL_DESA}/${ResumenIngresosME}`, value, { cancelToken: source.token });
               responsePromise.push(resAgencias);
 
-              const resTotalIngresos = await axios.post(`${REACT_API_URL_DESA}/TotalesIngresosInverME`, {...value, "cCodOfi":"0"}, { cancelToken: source.token })
+              const resTotalIngresos = await axios.post(`${REACT_API_URL_DESA}/${TotalIngresosME}`, {...value, "cCodOfi":"0"}, { cancelToken: source.token })
              responsePromise.push(resTotalIngresos);
           }
     
@@ -390,7 +390,7 @@ const fechas = { fecha_desde: fechDesde, fecha_hasta: fechHasta, cCodOfi: oficin
       // alert(JSON.stringify(fechas))
 
       const respTotalxAgencia = async () => {
-        const res = await axios.post(`${REACT_API_URL_DESA}/TotalesIngresosInverME`, fechas, { cancelToken: source.token })
+        const res = await axios.post(`${REACT_API_URL_DESA}/${TotalIngresosME}`, fechas, { cancelToken: source.token })
         if (isMounted){
           if(oficina == 0) {
             setdtosAgencias(res.data)

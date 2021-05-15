@@ -2,13 +2,13 @@ import React, { useContext, useState } from "react";
 import AuthContext from "../Context/AuthContext/AuthContext";
 import Paper from "@material-ui/core/Paper";
 import Logo from "../logo-piramides.svg";
+import { Visibility, VisibilityOff } from "@material-ui/icons";
 import HttpsIcon from "@material-ui/icons/Https";
-import { Button, TextField } from "@material-ui/core";
+import { Button, TextField,InputAdornment,IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
-import Alert from "./Alerta"
+import Alert from "./Alerta";
 import Fade from '@material-ui/core/Fade';
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,9 +30,13 @@ const Login = (props) => {
   const [user, setUser] = useState({ p_portal_username: "", p_pwd: "" });
   const [open, setOpen] = React.useState(false); 
   const [msn, setMsn] = React.useState(""); 
-
+  const [shown, setShown] = React.useState(false);
   const handleClose = () => {
     setOpen(false);
+  };
+  const handleClickShowPassword = () => setShown(!shown);
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
   };
 
   const onChange = (e) => {
@@ -110,13 +114,25 @@ const Login = (props) => {
               <div style={{ marginTop: "20px", marginBottom: 30,width: "100%", }}>
               <TextField
                 label="Contraseña"
-                type="password"
+                type={shown ? 'text' : 'password'}
                 name="p_pwd"
                 // color="primary"
                 onChange={onChange}
                 // className={`${classes.root} ${classes.text}`}
                 style={{ width: "100%" }}
                 variant="outlined"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                      >
+                        {shown ? <Visibility fontSize="small" style={{ color: "#bd261e" }} /> : <VisibilityOff fontSize="small" style={{ color: "#bd261e" }} />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
               </div>
               <div>
