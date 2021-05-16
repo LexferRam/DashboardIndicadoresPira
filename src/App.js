@@ -70,7 +70,7 @@ const PurpleSwitch = withStyles({
 function App() {
   const classes = useStyles();
   const [state, setState] = React.useState({
-    checkedA: false
+    checkedA: true
   });
 
   const handleChange = (event) => {
