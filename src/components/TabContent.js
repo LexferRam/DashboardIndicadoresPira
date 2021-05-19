@@ -30,6 +30,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import AlertDialogSlide from "./Alerta";
+import {useListCurrencies} from '../hooks/useListCurrencies';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -94,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TabContent({ titulo, url, urlGraph, urlGraph2,TotalIngresosME,ResumenIngresosME }) {
-    // const REACT_API_URL_DESA = "http://10.128.49.125:5000/recaudosApi";
+  //  const REACT_API_URL_DESA = "http://10.128.49.125:5000/recaudosApi";
    const REACT_API_URL_DESA = "https://emergencia24horas.segurospiramide.com/node/express/servicios/api";
 
    const classes = useStyles();
@@ -108,6 +109,7 @@ function TabContent({ titulo, url, urlGraph, urlGraph2,TotalIngresosME,ResumenIn
   const [value, setValue] = useState({
     fecha_desde: "05/10/2020",
     fecha_hasta: strfechahasta,
+    cCodMoneda: "DL"
   });
   const [cotizaciones, setCotizaciones] = useState([]);
   const [isLoad, setIsLoad] = useState(false);
@@ -118,6 +120,8 @@ function TabContent({ titulo, url, urlGraph, urlGraph2,TotalIngresosME,ResumenIn
   const [oficina, setOficina] = useState('0');
   const [open, setOpen] = React.useState(false); 
   const [msn, setMsn] = React.useState(""); 
+  const {listCurrencies,moneda, handleChangeMoneda} = useListCurrencies();
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -153,7 +157,7 @@ function TabContent({ titulo, url, urlGraph, urlGraph2,TotalIngresosME,ResumenIn
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 setIsLoad(false);
-    const fechas = { fecha_desde: fechDesde, fecha_hasta: fechHasta };
+    const fechas = { fecha_desde: fechDesde, fecha_hasta: fechHasta,cCodMoneda:moneda };
     //--------------------------------------------------------------------
     async function fetchData() {
       let responsePromise = []
@@ -211,7 +215,7 @@ setIsLoad(false);
         const actualiza =async () =>{
          // const valorActualSelect = document.getElementById("listaAgencias").value
          // alert(valorActualSelect)
-          const resTotalIngresos = await axios.post(`${REACT_API_URL_DESA}/${TotalIngresosME}`, {...value, "cCodOfi":oficina}, { cancelToken: source.token })
+          const resTotalIngresos = await axios.post(`${REACT_API_URL_DESA}/${TotalIngresosME}`, {...value,"cCodOfi":oficina}, { cancelToken: source.token })
           // responsePromise.push(resTotalIngresos);
           if (isMounted) setdtosAgencias(resTotalIngresos.data)
         // await setdtosAgencias(resTotalIngresos.data)
@@ -348,13 +352,14 @@ setIsLoad(false);
       };
     }, []);
 
+   
+
  
   //######################MANEJADORES EVENTOS DEL SELECT NUEVO(EFECTIVO/SOBRANTE/FALTANTE)##########
   //################################################################################################
   const handleChangeOfic = (e)=>{
     setOficina(e.target.value)
     setCotizaciones(dtosAgencias)
-    
   }
   const handleChange = async (e) => {
     const source = axios.CancelToken.source();
@@ -386,7 +391,7 @@ setIsLoad(false);
 ///////////////////////////////////////////////////////////////////////////////////////
 await setIsLoad(false);
 
-const fechas = { fecha_desde: fechDesde, fecha_hasta: fechHasta, cCodOfi: oficina };
+const fechas = { fecha_desde: fechDesde, fecha_hasta: fechHasta, cCodMoneda:moneda, cCodOfi: oficina };
       // alert(JSON.stringify(fechas))
 
       const respTotalxAgencia = async () => {
@@ -468,6 +473,29 @@ const fechas = { fecha_desde: fechDesde, fecha_hasta: fechHasta, cCodOfi: oficin
                             onChange={onChangeVal}
                           />
                         </Grid>
+                        <Grid item xs={6} sm={4} md={2} lg={2}>
+                          <InputLabel style={{ fontSize: 12, marginBottom: 4 }}>Moneda</InputLabel>
+                                <Select
+                                  onChange={handleChangeMoneda}
+                                  value={moneda}
+                                  id="listaMoneda"
+                                  style={{ width: 150,fontSize: 12,textTransform:"capitalize" }}
+                                >
+                                  {listCurrencies.map((moneda) => {
+                                    return (
+                                      <MenuItem
+                                        key={moneda.CODMONEDA}
+                                        name={moneda.CODMONEDA}
+                                        value={moneda.CODMONEDA}
+                                        style={{fontSize: 12 }}
+                                      >
+                                        {moneda.DESCMONEDA}
+                                      </MenuItem>
+                                    )
+                                  })}
+                                </Select>
+                        </Grid>
+                       
                       
 {/* AGENCIASSSS************************************************************************************************************ */}
 {/* AGENCIASSSS************************************************************************************************************ */}

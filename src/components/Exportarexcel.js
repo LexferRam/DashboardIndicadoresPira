@@ -26,7 +26,7 @@ function Exportarexcel({ enviarjsonGrid, titulo }) {
               marginRight: 10,
             }}
           >
-            Excel
+            Descargar
           </Button>
         }
         filename={titulo}
