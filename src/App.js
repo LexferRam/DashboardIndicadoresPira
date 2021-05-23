@@ -79,7 +79,7 @@ function App() {
 
   return (
     <>
-
+  {/* Router ppal */}
       <Router>
         <AuthState>
           <Switch2 >
