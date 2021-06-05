@@ -27,7 +27,7 @@ export default function App({ enviardataGrid,valor,dtosAgencias }) {
           CLIENTE: item.CLIENTE,
         };
       });
-  
+  // alert(JSON.stringify(ArrCotizaciones))
       setRows(ArrCotizaciones);
 
       columns = [
@@ -188,83 +188,44 @@ export default function App({ enviardataGrid,valor,dtosAgencias }) {
         }
       ]
     }else if(valor == "Efectivo / Sobrantes / Faltantes"){
-      if(dtosAgencias[0].CODIGO_OFICINA == "0"){
-          console.log('Aqui'+ JSON.stringify(dtosAgencias[0].CODIGO_OFICINA))
-          var ArrCotizaciones = enviardataGrid.map((item, index) => {
-            return {
-              id: index,
-              OFICINA: item.OFICINA,
-              MTO_MONEDA: item.MTO_MONEDA,
-              MTO_FALTANTE: item.MTO_FALTANTE,
-              MTO_SOBRANTE: item.MTO_SOBRANTE,
-            };
-          });
 
-          setRows(ArrCotizaciones);
-          columns = [
-            {
-              field: "OFICINA",
-              headerName: "Oficina",
-              width: 150,
-            },
-            {
-              field: "MTO_MONEDA",
-              headerName: "Monto Moneda $",
-              width: 170,
-              type: "number",
-            },
-            {
-              field: "MTO_FALTANTE",
-              headerName: "Monto Faltante $",
-              width: 170,
-              type: "number",
-            },
-            {
-              field: "MTO_SOBRANTE",
-              headerName: "Monto Sobrante $",
-              width: 170,
-              type: "number",
-            }
-          ]
-      }else{
-        var ArrCotizaciones = dtosAgencias.map((item, index) => {
-          return {
-            id: dtosAgencias[0].CODIGO_OFICINA,
-            OFICINA: dtosAgencias[0].OFICINA,
-            MTO_MONEDA: dtosAgencias[0].MTO_MONEDA,
-            MTO_FALTANTE: dtosAgencias[0].MTO_FALTANTE,
-            MTO_SOBRANTE: dtosAgencias[0].MTO_SOBRANTE,
-          };
-        });
+      var ArrCotizaciones = enviardataGrid.map((item, index) => {
+        return {
+          id: item.CODIGO_OFICINA,
+          OFICINA: item.OFICINA,
+          MTO_MONEDA: item.MTO_MONEDA,
+          MTO_FALTANTE: item.MTO_FALTANTE,
+          MTO_SOBRANTE: item.MTO_SOBRANTE,
+        };
+      });
 
-         setRows(ArrCotizaciones);
-          columns = [
-            {
-              field: "OFICINA",
-              headerName: "Oficina",
-              width: 100,
-            },
-            {
-              field: "MTO_MONEDA",
-              headerName: "Monto Moneda $",
-              width: 150,
-               type: "number",
-            },
-            {
-              field: "MTO_FALTANTE",
-              headerName: "Monto Faltante $",
-              width: 150,
-               type: "number",
-            },
-            {
-              field: "MTO_SOBRANTE",
-              headerName: "Monto Sobrante $",
-              width: 160,
-               type: "number",
-            }
-          ]
-      }
-    }
+      setRows(ArrCotizaciones);
+      columns = [
+        {
+          field: "OFICINA",
+          headerName: "Oficina",
+          width: 150,
+        },
+        {
+          field: "MTO_MONEDA",
+          headerName: "Monto Moneda",
+          width: 170,
+          type: "number",
+        },
+        {
+          field: "MTO_FALTANTE",
+          headerName: "Monto Faltante",
+          width: 170,
+          type: "number",
+        },
+        {
+          field: "MTO_SOBRANTE",
+          headerName: "Monto Sobrante",
+          width: 170,
+          type: "number",
+        }
+      ]
+}
   }, []);
 
   function CustomPagination(props) {

@@ -95,10 +95,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TabContent({ titulo, url, urlGraph, urlGraph2,TotalIngresosME,ResumenIngresosME }) {
-  //  const REACT_API_URL_DESA = "http://10.128.49.125:5000/recaudosApi";
-   const REACT_API_URL_DESA = "https://emergencia24horas.segurospiramide.com/node/express/servicios/api";
+   // const REACT_API_URL_DESA = "http://10.128.49.125:5000/recaudosApi";
+  const REACT_API_URL_DESA = "https://emergencia24horas.segurospiramide.com/node/express/servicios/api";
 
    const classes = useStyles();
+   //////////////////////////////////////////////
   var fecha_hasta = new Date();
   var strfechahasta =
     fecha_hasta.getDate() +
@@ -106,8 +107,17 @@ function TabContent({ titulo, url, urlGraph, urlGraph2,TotalIngresosME,ResumenIn
     (fecha_hasta.getMonth() + 1) +
     "/" +
     fecha_hasta.getFullYear();
+    //////////////////////////////////////
+    var fecha_desde = new Date();
+    var strfechadesde =
+    fecha_desde.getDate() +
+      "/" +
+      (fecha_desde.getMonth() + 1) +
+      "/" +
+      fecha_desde.getFullYear();
+      /////////////////////////////////////////
   const [value, setValue] = useState({
-    fecha_desde: "05/10/2020",
+    fecha_desde: strfechadesde,
     fecha_hasta: strfechahasta,
     cCodMoneda: "DL"
   });
@@ -331,7 +341,7 @@ setIsLoad(false);
           }
     
           await setValue({
-            fecha_desde: "2020-10-05",
+            fecha_desde: fec_hasta_Ini_DT,
             fecha_hasta: fec_hasta_Ini_DT,
           });
           await setIsLoad(true);
@@ -395,11 +405,18 @@ const fechas = { fecha_desde: fechDesde, fecha_hasta: fechHasta, cCodMoneda:mone
       // alert(JSON.stringify(fechas))
 
       const respTotalxAgencia = async () => {
+        // alert(JSON.stringify(fechas))
         const res = await axios.post(`${REACT_API_URL_DESA}/${TotalIngresosME}`, fechas, { cancelToken: source.token })
         if (isMounted){
           if(oficina == 0) {
-            setdtosAgencias(res.data)
-            setCotizaciones(agencias)
+            // setdtosAgencias([])
+            // setCotizaciones([])
+            // alert(JSON.stringify(agencias))
+            let res1 = await axios.post(`${REACT_API_URL_DESA}/${ResumenIngresosME}`, fechas)
+            // alert(JSON.stringify(res1.data))
+      
+             setdtosAgencias(res1.data)
+             setCotizaciones(res1.data)//estado del grafico
           } else{
 
             setdtosAgencias(res.data)
@@ -474,7 +491,7 @@ const fechas = { fecha_desde: fechDesde, fecha_hasta: fechHasta, cCodMoneda:mone
                           />
                         </Grid>
                         <Grid item xs={6} sm={4} md={2} lg={2}>
-                          <InputLabel style={{ fontSize: 12, marginBottom: 4 }}>Moneda</InputLabel>
+                          <InputLabel style={{ fontSize: 12, marginBottom: 4, textAlign:"left", marginLeft:20 }}>Moneda</InputLabel>
                                 <Select
                                   onChange={handleChangeMoneda}
                                   value={moneda}
@@ -504,7 +521,7 @@ const fechas = { fecha_desde: fechDesde, fecha_hasta: fechHasta, cCodMoneda:mone
                             <Grid
                               item
                               style={{ display: "flex", flexDirection: 'column' }}
-                              xs={12}
+                              xs={6}
                               sm={4}
                               md={3}
                               lg={2}
@@ -554,8 +571,11 @@ const fechas = { fecha_desde: fechDesde, fecha_hasta: fechHasta, cCodMoneda:mone
                            </Button>
                               <ExportarExcel titulo={titulo} enviarjsonGrid={cotizaciones} />
                             </Grid>
+                           
                           </>
                            ) : (
+                            <>
+                             
                             <Grid
                             item
                             style={{ display: "flex" }}
@@ -577,6 +597,7 @@ const fechas = { fecha_desde: fechDesde, fecha_hasta: fechHasta, cCodMoneda:mone
                           </Button>
                            <ExportarExcel titulo={titulo}  enviarjsonGrid={cotizaciones} />
                           </Grid>
+                          </>
                            )}                     
 {/* AGENCIASSSS************************************************************************************************************ */}
 {/* AGENCIASSSS************************************************************************************************************ */}
