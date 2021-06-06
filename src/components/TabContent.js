@@ -95,10 +95,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TabContent({ titulo, url, urlGraph, urlGraph2,TotalIngresosME,ResumenIngresosME }) {
-   // const REACT_API_URL_DESA = "http://10.128.49.125:5000/recaudosApi";
-  const REACT_API_URL_DESA = "https://emergencia24horas.segurospiramide.com/node/express/servicios/api";
+  //  const REACT_API_URL_DESA = "http://10.128.49.125:5000/recaudosApi";
+   const REACT_API_URL_DESA = "https://emergencia24horas.segurospiramide.com/node/express/servicios/api";
 
-   const classes = useStyles();
+  const classes = useStyles();
    //////////////////////////////////////////////
   var fecha_hasta = new Date();
   var strfechahasta =
@@ -115,7 +115,7 @@ function TabContent({ titulo, url, urlGraph, urlGraph2,TotalIngresosME,ResumenIn
       (fecha_desde.getMonth() + 1) +
       "/" +
       fecha_desde.getFullYear();
-      /////////////////////////////////////////
+    /////////////////////////////////////////
   const [value, setValue] = useState({
     fecha_desde: strfechadesde,
     fecha_hasta: strfechahasta,
@@ -287,10 +287,12 @@ setIsLoad(false);
 
         if (ldia < 10) {
           var dia = "0" + fecha_hasta.getDate();
-          fec_hasta_Ini_DT = fecha_hasta.getFullYear() + "-" + mes + "-" + dia;
+          // fec_hasta_Ini_DT = dia + mes + fecha_hasta.getFullYear();
+         fec_hasta_Ini_DT = fecha_hasta.getFullYear() + "-" + mes + "-" + dia;
         } else {
-          fec_hasta_Ini_DT =
-            fecha_hasta.getFullYear() + "-" + mes + "-" + fecha_hasta.getDate();
+          fec_hasta_Ini_DT = fecha_hasta.getFullYear() + "-" + mes + "-" + fecha_hasta.getDate();
+          // fec_hasta_Ini_DT = dia + mes + fecha_hasta.getFullYear();
+
         }
       }
       //********************************************* */
@@ -314,10 +316,41 @@ setIsLoad(false);
           }
     
           if(titulo === "Efectivo / Sobrantes / Faltantes"){
-              const resAgencias = axios.post(`${REACT_API_URL_DESA}/${ResumenIngresosME}`, value, { cancelToken: source.token });
-              responsePromise.push(resAgencias);
+            // http://localhost:5000/recaudosApi/ResumenIngresosInverME
+            
 
-              const resTotalIngresos = await axios.post(`${REACT_API_URL_DESA}/${TotalIngresosME}`, {...value, "cCodOfi":"0"}, { cancelToken: source.token })
+            //formateando fecha para que el api funcione 12345
+            // let arrayfechaDesde = value.fecha_desde.split("-")
+            // if(arrayfechaDesde.length == 2){
+            //   let anioDesde =arrayfechaDesde[0]
+            //   let mesDesde =arrayfechaDesde[1]
+            //   let diaDesde =arrayfechaDesde[2]
+            //   let arrayfechaDesdeFormateada= diaDesde+ "/"+mesDesde+"/"+anioDesde;
+            //   alert("aaaaaa"+arrayfechaDesdeFormateada)
+            // }
+
+            let valorParametrosInicial = {
+              "fecha_desde": strfechadesde,
+              "fecha_hasta": strfechahasta,
+              "cCodMoneda": "DL"
+            }
+
+            let url=`${REACT_API_URL_DESA}/${ResumenIngresosME}`;
+           
+           // alert("******"+JSON.stringify(valorParametrosInicial))
+           
+            const resAgencias = axios.post(
+              url, 
+              valorParametrosInicial, 
+              { cancelToken: source.token }
+            );
+            responsePromise.push(resAgencias);
+            
+            const resTotalIngresos = await axios.post(
+              `${REACT_API_URL_DESA}/${TotalIngresosME}`, 
+              {...value, "cCodOfi":"0"}, 
+              { cancelToken: source.token }
+            )
              responsePromise.push(resTotalIngresos);
           }
     
@@ -335,6 +368,7 @@ setIsLoad(false);
           if (titulo === "Efectivo / Sobrantes / Faltantes") {
             if (isMounted){
               setAgencias(responses[1].data)
+             // alert(responses[1].data)
               setdtosAgencias(responses[2].data)//datos por defecto que se pasa al grafico de totales
               
             }
@@ -405,7 +439,11 @@ const fechas = { fecha_desde: fechDesde, fecha_hasta: fechHasta, cCodMoneda:mone
       // alert(JSON.stringify(fechas))
 
       const respTotalxAgencia = async () => {
-        // alert(JSON.stringify(fechas))
+        const valoresApi = { fecha_desde: fechDesde, fecha_hasta: fechHasta, cCodMoneda:moneda };
+        let agencias = await axios.post(`${REACT_API_URL_DESA}/${ResumenIngresosME}`, valoresApi)
+            setAgencias(agencias.data)
+        //  alert(JSON.stringify(agencias.data))
+
         const res = await axios.post(`${REACT_API_URL_DESA}/${TotalIngresosME}`, fechas, { cancelToken: source.token })
         if (isMounted){
           if(oficina == 0) {
