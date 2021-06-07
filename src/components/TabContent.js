@@ -395,9 +395,6 @@ setIsLoad(false);
         source.cancel();
       };
     }, []);
-
-   
-
  
   //######################MANEJADORES EVENTOS DEL SELECT NUEVO(EFECTIVO/SOBRANTE/FALTANTE)##########
   //################################################################################################
@@ -405,6 +402,7 @@ setIsLoad(false);
     setOficina(e.target.value)
     setCotizaciones(dtosAgencias)
   }
+
   const handleChange = async (e) => {
     const source = axios.CancelToken.source();
     let isMounted = true;

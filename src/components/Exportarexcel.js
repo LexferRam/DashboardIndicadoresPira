@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ExportExcel from "react-export-excel";
-import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
-import Button from "@material-ui/core/Button";
+import excel from "../excel1.svg"
+import { ButtonBase } from "@material-ui/core";
 
 const ExcelFile = ExportExcel.ExcelFile;
 const ExcelSheet = ExportExcel.ExcelSheet;
@@ -13,21 +13,10 @@ function Exportarexcel({ enviarjsonGrid, titulo }) {
     <div className="btnExportarExcel">
       <ExcelFile
         element={
-          <Button
-            variant="contained"
-            color="secondary"
-            startIcon={<ArrowDownwardIcon fontSize="small" />}
-            style={{ 
-              backgroundColor: " #bd261e",
-              color: "white",
-              fontSize: 10,
-              borderRadius: 50,
-              marginTop: 15,
-              marginRight: 10,
-            }}
-          >
-            Descargar
-          </Button>
+        <ButtonBase style={{marginTop:"10px"}} >
+          <img src={excel} style={{width:"30px"}}  />
+          <span style={{color:"green", fontSize:11}}>DESCARGAR EXCEL</span>
+        </ButtonBase>
         }
         filename={titulo}
       >
