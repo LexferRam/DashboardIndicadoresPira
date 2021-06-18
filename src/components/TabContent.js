@@ -95,8 +95,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TabContent({ titulo, url, urlGraph, urlGraph2,TotalIngresosME,ResumenIngresosME }) {
-  //  const REACT_API_URL_DESA = "http://10.128.49.125:5000/recaudosApi";
-   const REACT_API_URL_DESA = "https://emergencia24horas.segurospiramide.com/node/express/servicios/api";
+ const REACT_API_URL_DESA = "http://10.128.49.125:5000";
+//   const REACT_API_URL_DESA = "https://emergencia24horas.segurospiramide.com/node/express/servicios/api";
 
   const classes = useStyles();
    //////////////////////////////////////////////
@@ -118,8 +118,9 @@ function TabContent({ titulo, url, urlGraph, urlGraph2,TotalIngresosME,ResumenIn
     /////////////////////////////////////////
   const [value, setValue] = useState({
     fecha_desde: strfechadesde,
-    fecha_hasta: strfechahasta,
-    cCodMoneda: "DL"
+    // fecha_desde: "20/10/2020",
+    fecha_hasta: strfechahasta
+    // cCodMoneda: "DL"
   });
   const [cotizaciones, setCotizaciones] = useState([]);
   const [isLoad, setIsLoad] = useState(false);
@@ -167,7 +168,7 @@ function TabContent({ titulo, url, urlGraph, urlGraph2,TotalIngresosME,ResumenIn
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 setIsLoad(false);
-    const fechas = { fecha_desde: fechDesde, fecha_hasta: fechHasta,cCodMoneda:moneda };
+    const fechas = { fecha_desde: fechDesde, fecha_hasta: fechHasta };
     //--------------------------------------------------------------------
     async function fetchData() {
       let responsePromise = []
@@ -177,17 +178,17 @@ setIsLoad(false);
        //********************************************* */
      try {
         //*********************************************** */
-      const res = axios.post(url, fechas, { cancelToken: source.token });
+      const res = axios.post(REACT_API_URL_DESA+url, fechas, { cancelToken: source.token });
       responsePromise.push(res);
       //*********************************************** */
       if(urlGraph !== ""){
-        const resGraph = axios.post(urlGraph, fechas, { cancelToken: source.token });
+        const resGraph = axios.post(REACT_API_URL_DESA+urlGraph, fechas, { cancelToken: source.token });
         responsePromise.push(resGraph);
       }
       //*********************************************** */
       if(urlGraph2 !== ""){
 
-      const resGraph2 = axios.post(urlGraph2, fechas, { cancelToken: source.token });
+      const resGraph2 = axios.post(REACT_API_URL_DESA+urlGraph2, fechas, { cancelToken: source.token });
       responsePromise.push(resGraph2);
     }
       //*********************************************** */
@@ -302,16 +303,17 @@ setIsLoad(false);
       async function fetchData() {
         let responsePromise = []
         try {
-          const res = axios.post(url, value, { cancelToken: source.token });
+          // alert(REACT_API_URL_DESA+url)
+          const res = axios.post(REACT_API_URL_DESA+url, value, { cancelToken: source.token });
           responsePromise.push(res);
     
           if(urlGraph !== ""){
-            const resGraph = axios.post(urlGraph, value, { cancelToken: source.token });
+            const resGraph = axios.post(REACT_API_URL_DESA+urlGraph, value, { cancelToken: source.token });
             responsePromise.push(resGraph);
           }
 
           if(urlGraph2 !== ""){
-            const resGraph2 = axios.post(urlGraph2, value, { cancelToken: source.token });
+            const resGraph2 = axios.post(REACT_API_URL_DESA+urlGraph2, value, { cancelToken: source.token });
             responsePromise.push(resGraph2);
           }
     
@@ -441,7 +443,7 @@ const fechas = { fecha_desde: fechDesde, fecha_hasta: fechHasta, cCodMoneda:mone
         let agencias = await axios.post(`${REACT_API_URL_DESA}/${ResumenIngresosME}`, valoresApi)
             setAgencias(agencias.data)
         //  alert(JSON.stringify(agencias.data))
-
+        alert(`${REACT_API_URL_DESA}/${TotalIngresosME}`)
         const res = await axios.post(`${REACT_API_URL_DESA}/${TotalIngresosME}`, fechas, { cancelToken: source.token })
         if (isMounted){
           if(oficina == 0) {
@@ -526,7 +528,7 @@ const fechas = { fecha_desde: fechDesde, fecha_hasta: fechHasta, cCodMoneda:mone
                             onChange={onChangeVal}
                           />
                         </Grid>
-                        <Grid item xs={6} sm={4} md={2} lg={2}>
+                        {/* <Grid item xs={6} sm={4} md={2} lg={2}>
                           <InputLabel style={{ fontSize: 12, marginBottom: 4, textAlign:"left", marginLeft:20 }}>Moneda</InputLabel>
                                 <Select
                                   onChange={handleChangeMoneda}
@@ -547,7 +549,7 @@ const fechas = { fecha_desde: fechDesde, fecha_hasta: fechHasta, cCodMoneda:mone
                                     )
                                   })}
                                 </Select>
-                        </Grid>
+                        </Grid> */}
                        
                       
 {/* AGENCIASSSS************************************************************************************************************ */}

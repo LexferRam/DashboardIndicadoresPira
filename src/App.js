@@ -5,7 +5,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 //Tabs
 import Tabs3 from "./components/Tabs3";
-import Tabs2 from "./components/Tabs2";
+import Tabs from "./components/Tabs";
 import "./css/Tabs.css";
 import AppBar from "./components/AppBar";
 import { withStyles } from '@material-ui/core/styles';
@@ -19,6 +19,7 @@ import Login from "./components/Login";
 import PrivateRoute from "./hocs/PrivateRoute";
 import UnPrivateRoute from "./hocs/UnprivateRoute";
 import Fade from '@material-ui/core/Fade';
+import { SignalCellularNull } from "@material-ui/icons";
 
 //estilos grid
 const useStyles = makeStyles((theme) => ({
@@ -70,7 +71,7 @@ const PurpleSwitch = withStyles({
 function App() {
   const classes = useStyles();
   const [state, setState] = React.useState({
-    checkedA: false
+    checkedA: true
   });
 
   const handleChange = (event) => {
@@ -88,7 +89,7 @@ function App() {
               return (
                 <>
                   <AppBar />
-                  <div style={{ display: "flex", justifyContent: "center", marginTop: 20, marginBottom: -20 }}>
+                  <div style={{ display: "none", justifyContent: "center", marginTop: 20, marginBottom: -20 }}>
                     <div className={`${classes.checkLabels}`}>Pirámide</div>
                     <FormGroup>
                       <FormControlLabel
@@ -99,29 +100,30 @@ function App() {
                     <div className={`${classes.checkLabels}`}>Inversora</div>
                   </div>
                   {state.checkedA ? (
-                          <Fade in={true} timeout={2000}>
-                    <div className={`${classes.root}`}>
-                      <Grid container spacing={2}>
-                        <Grid item xs={12} className={classes.borde}>
-                          <Paper elevation={20} className={classes.paper}>
-                            <Tabs2 />
-                          </Paper>
-                        </Grid>
-                      </Grid>
-                    </div>
-                            </Fade>
-                  ) : (
                     <Fade in={true} timeout={2000}>
-                    <div className={`${classes.root}`}>
+                      <div className={`${classes.root}`}>
                         <Grid container spacing={2}>
                           <Grid item xs={12} className={classes.borde}>
                             <Paper elevation={20} className={classes.paper}>
-                        <Tabs3 />
+                              <Tabs/>
                             </Paper>
                           </Grid>
                         </Grid>
                       </div>
-                              </Fade>
+                    </Fade>
+                  ) : (
+                    // <Fade in={true} timeout={2000}>
+                    // <div className={`${classes.root}`}>
+                    //     <Grid container spacing={2}>
+                    //       <Grid item xs={12} className={classes.borde}>
+                    //         <Paper elevation={20} className={classes.paper}>
+                    //     <Tabs3 />
+                    //         </Paper>
+                    //       </Grid>
+                    //     </Grid>
+                    //   </div>
+                    //           </Fade>
+                    null
                     )}
                 </>
               )

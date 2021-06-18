@@ -53,7 +53,7 @@ export default function ScrollableTabsButtonAuto() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
-  const {REACT_URL_API}= process.env
+  const REACT_API_URL= "https://emergencia24horas.segurospiramide.com/node/express/servicios/api"
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

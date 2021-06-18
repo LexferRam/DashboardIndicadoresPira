@@ -90,7 +90,7 @@ export default function GraficaPrueba({ enviardataGraph, valor }) {
           )
       }
       <Chart
-        width={'390px'}
+        width={'370px'}
         height={'250px'}
         chartType="PieChart"
         data={json}
