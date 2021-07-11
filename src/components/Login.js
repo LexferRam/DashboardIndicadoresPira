@@ -66,9 +66,13 @@ const Login = (props) => {
           props.history.push("/");
         } else {
           // props.history.push("/app");
+          setOpen(true);
+          setMsn("ERROR: "+ error)
           console.log(error)
         }
       } else if (error.request) {
+        setOpen(true);
+        setMsn("ERROR conectando con el servidor")
         return error.request
       } else {
         return error.message
