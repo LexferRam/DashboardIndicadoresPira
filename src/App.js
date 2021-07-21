@@ -116,7 +116,7 @@ function App() {
                         <Grid container spacing={2}>
                           <Grid item xs={12} className={classes.borde}>
                             <Paper elevation={20} className={classes.paper}>
-                        <Tabs3 />
+                              <Tabs3 />
                             </Paper>
                           </Grid>
                         </Grid>

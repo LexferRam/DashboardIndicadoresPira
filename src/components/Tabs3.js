@@ -72,8 +72,8 @@ export default function ScrollableTabsButtonAuto() {
           aria-label="scrollable auto tabs example"
         >
           <Tab label="Recaudación Divisas-Efectivo" {...a11yProps(0)} />
-          <Tab label="Recaudación Divisas-Efectivo-Sobrantes" {...a11yProps(1)} />
-          <Tab label="Recaudación Divisas - Efectivo - Faltantes" {...a11yProps(2)} />
+          <Tab label="Sobrantes" {...a11yProps(1)} />
+          <Tab label="Faltantes" {...a11yProps(2)} />
           <Tab label="Efectivo / Sobrantes / Faltantes" {...a11yProps(3)} />
           <Tab label="Recaudación Divisas - Efectivo - Faltantes y Sobrantes" {...a11yProps(4)} />
           {/* <Tab label="Item Seven" {...a11yProps(6)} /> */}
