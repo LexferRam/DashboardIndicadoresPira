@@ -95,8 +95,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TabContent({ titulo, url, urlGraph, urlGraph2,TotalIngresosME,ResumenIngresosME }) {
-//  const REACT_API_URL_DESA = "http://10.128.49.125:5000";
-  const REACT_API_URL_DESA = "https://emergencia24horas.segurospiramide.com/node/express/servicios";
+ const REACT_API_URL_DESA = "http://10.128.49.125:5000";
+  // const REACT_API_URL_DESA = "https://emergencia24horas.segurospiramide.com/node/express/servicios";
 
   const classes = useStyles();
    //////////////////////////////////////////////

@@ -2,8 +2,8 @@ import React,{useEffect, useState} from 'react'
 import axios from 'axios';
 
 export const useListCurrencies = () => {
-//    const REACT_API_URL_DESA = "http://10.128.49.125:5000/recaudosApi";
-    const REACT_API_URL_DESA = "https://emergencia24horas.segurospiramide.com/node/express/servicios/api";
+   const REACT_API_URL_DESA = "http://10.128.49.125:5000/recaudosApi";
+    // const REACT_API_URL_DESA = "https://emergencia24horas.segurospiramide.com/node/express/servicios/api";
 
 
     const [listCurrencies, setListCurrencies] = useState([])
