@@ -50,8 +50,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ScrollableTabsButtonAuto() {
-  const REACT_API_URL_DESA = "http://10.128.49.125:5000/recaudosApi";
-  //  const REACT_API_URL_DESA = "https://emergencia24horas.segurospiramide.com/node/express/servicios/api";
+  // const REACT_API_URL_DESA = "http://10.128.49.125:5000/recaudosApi";
+   const REACT_API_URL_DESA = "https://emergencia24horas.segurospiramide.com/node/express/servicios/api";
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
