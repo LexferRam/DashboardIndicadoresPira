@@ -32,6 +32,8 @@ import Select from '@material-ui/core/Select';
 import AlertDialogSlide from "./Alerta";
 import {useListCurrencies} from '../hooks/useListCurrencies';
 
+
+
 const useStyles = makeStyles((theme) => ({
 
   root: {
@@ -132,6 +134,12 @@ function TabContent({ titulo, url, urlGraph, urlGraph2,TotalIngresosME,ResumenIn
   const [msn, setMsn] = React.useState(""); 
   const {listCurrencies,moneda, handleChangeMoneda} = useListCurrencies();
 
+  // const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+
+  // const handleDateChange = (date) => {
+  //   setSelectedDate(date);
+  // };
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -143,25 +151,31 @@ function TabContent({ titulo, url, urlGraph, urlGraph2,TotalIngresosME,ResumenIn
   const onSubmit = (e) => {
 
     //setIsLoad(false);
-
+    
     const arrDesde = value.fecha_desde.split("-");
     const arrHasta = value.fecha_hasta.split("-");
     const fechDesde = arrDesde[2] + "/" + arrDesde[1] + "/" + arrDesde[0];
     const fechHasta = arrHasta[2] + "/" + arrHasta[1] + "/" + arrHasta[0];
-///////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////
-      ////validando que la facha de inicio sea menor a la de culminacion
-      const fechaHoy = new Date();
-      const startDay = new Date(arrDesde);
-      const endDay = new Date(arrHasta);
-      if (endDay < startDay) {
+   
+    ///////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////
+    ////validando que la facha de inicio sea menor a la de culminacion
+    const startDay = parseInt(arrDesde[2]) + parseInt(arrDesde[1]) + parseInt(arrDesde[0]);
+    const endDay = parseInt(arrHasta[2]) + parseInt(arrHasta[1]) + parseInt(arrHasta[0]);
+
+    if(parseInt(arrHasta[0]) < parseInt(arrDesde[0]) || parseInt(arrHasta[1]) < parseInt(arrDesde[1]) || parseInt(arrHasta[2]) < parseInt(arrDesde[2])){
+      setOpen(true)
+        setMsn("La fecha final debe ser mayor a la fecha inicial");
+      return;
+    }
+      if (!startDay) {
         setOpen(true)
-        setMsn('La fecha de inicio debe ser menor a la de culminación')
-        return 
+        setMsn('Favor ingresar la fecha de inicio');
+        return;
       }
-      if (startDay == "Invalid Date" || endDay == "Invalid Date") {
+      if (!endDay) {
         setOpen(true)
-        setMsn('Favor ingresar la fecha de inicio y culminación');
+        setMsn('Favor ingresar la fecha de culminación');
         return;
       }
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -216,6 +230,7 @@ setIsLoad(false);
   };
 
     useEffect(() => {
+     
       //********************************************* */
       const source = axios.CancelToken.source();
       let isMounted = true;
@@ -413,20 +428,26 @@ setIsLoad(false);
       const arrHasta = value.fecha_hasta.split("-");
       const fechDesde = arrDesde[2] + "/" + arrDesde[1] + "/" + arrDesde[0];
       const fechHasta = arrHasta[2] + "/" + arrHasta[1] + "/" + arrHasta[0];
-      ///////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////
-      ////validando que la facha de inicio sea menor a la de culminacion
-      const fechaHoy = new Date();
-      const startDay = new Date(arrDesde);
-      const endDay = new Date(arrHasta);
-      if (endDay < startDay) {
+     ///////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////
+    ////validando que la facha de inicio sea menor a la de culminacion
+    const startDay = parseInt(arrDesde[2]) + parseInt(arrDesde[1]) + parseInt(arrDesde[0]);
+    const endDay = parseInt(arrHasta[2]) + parseInt(arrHasta[1]) + parseInt(arrHasta[0]);
+
+    //anio-mes-dia
+    if(parseInt(arrHasta[0]) < parseInt(arrDesde[0]) || parseInt(arrHasta[1]) < parseInt(arrDesde[1]) || parseInt(arrHasta[2]) < parseInt(arrDesde[2])){
+      setOpen(true)
+        setMsn("La fecha final debe ser mayor a la fecha inicial");
+      return;
+    }
+      if (!startDay) {
         setOpen(true)
-        setMsn('La fecha de inicio debe ser menor a la de culminación')
-        return 
+        setMsn('Favor ingresar la fecha de inicio');
+        return;
       }
-      if (startDay == "Invalid Date" || endDay == "Invalid Date") {
+      if (!endDay) {
         setOpen(true)
-        setMsn('Favor ingresar la fecha de inicio y culminación');
+        setMsn('Favor ingresar la fecha de culminación');
         return;
       }
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -497,9 +518,11 @@ const fechas = { fecha_desde: fechDesde, fecha_hasta: fechHasta, cCodMoneda:mone
                     <Paper elevation={3} className={classes.paper}>
                       <Grid container spacing={2}>
                         <Grid item xs={6} sm={4} md={3} lg={2}>
+                      
                           <TextField
                             name="fecha_desde"
                             id="fecha_desde"
+                            // id="datepicker"
                             label="Fecha Inicio"
                             type="date"
                             value={value.fecha_desde}
@@ -509,12 +532,14 @@ const fechas = { fecha_desde: fechDesde, fecha_hasta: fechHasta, cCodMoneda:mone
                               shrink: true,
                             }}
                             onChange={onChangeVal}
-                          />
+                            />
+                  
                         </Grid>
                         <Grid item xs={6} sm={4} md={2} lg={2}>
                           <TextField
                             name="fecha_hasta"
                             id="fecha_hasta"
+                            // id="datepicker"
                             label="Fecha Culminación"
                             type="date"
                             // defaultValue="2017-05-24"
@@ -562,8 +587,8 @@ const fechas = { fecha_desde: fechDesde, fecha_hasta: fechHasta, cCodMoneda:mone
                               md={3}
                               lg={2}
                             >
-                              <FormControl >
-                                <InputLabel style={{ fontSize: 12, marginBottom: 4 }}>Agencias</InputLabel>
+                              <FormControl>
+                                <InputLabel style={{ fontSize: 12, marginBottom: 4}}>Agencias</InputLabel>
                                 <Select
                                   onChange={handleChangeOfic}
                                   value={oficina}

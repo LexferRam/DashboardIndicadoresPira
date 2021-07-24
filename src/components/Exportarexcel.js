@@ -13,7 +13,7 @@ function Exportarexcel({ enviarjsonGrid, titulo }) {
     <div className="btnExportarExcel">
       <ExcelFile
         element={
-        <ButtonBase style={{marginTop:"10px"}} >
+        <ButtonBase style={{marginTop:"15px"}} >
           <img src={excel} style={{width:"30px"}}  />
           <span style={{color:"green", fontSize:11}}>DESCARGAR EXCEL</span>
         </ButtonBase>

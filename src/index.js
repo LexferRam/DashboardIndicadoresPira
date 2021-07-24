@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import $ from "jquery";
 
 ReactDOM.render(
   <React.StrictMode>
