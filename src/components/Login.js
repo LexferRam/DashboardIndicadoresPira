@@ -58,6 +58,7 @@ const Login = (props) => {
       setUserAuth(JSON.parse(sessionStorage.getItem("DATA_DASH")).user.PORTAL_USERNAME);
       // setIsLoaded(true);
       props.history.push("/app")
+      // window.location.reload(true)
     } catch (error) {
       if (error.response) {
         if (error.response.status == 400) {
