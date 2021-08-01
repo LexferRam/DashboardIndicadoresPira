@@ -163,7 +163,21 @@ function TabContent({ titulo, url, urlGraph, urlGraph2,TotalIngresosME,ResumenIn
     const startDay = parseInt(arrDesde[2]) + parseInt(arrDesde[1]) + parseInt(arrDesde[0]);
     const endDay = parseInt(arrHasta[2]) + parseInt(arrHasta[1]) + parseInt(arrHasta[0]);
 
-    if(parseInt(arrHasta[0]) < parseInt(arrDesde[0]) || parseInt(arrHasta[1]) < parseInt(arrDesde[1]) || parseInt(arrHasta[2]) < parseInt(arrDesde[2])){
+    if(
+      parseInt(arrHasta[0]) < parseInt(arrDesde[0]) || 
+      parseInt(arrHasta[1]) < parseInt(arrDesde[1]) 
+      // || 
+      // parseInt(arrHasta[2]) < parseInt(arrDesde[2])
+      ){
+      setOpen(true)
+        setMsn("La fecha final debe ser mayor a la fecha inicial");
+      return;
+    }
+    if(
+      parseInt(arrHasta[0]) == parseInt(arrDesde[0]) && 
+      parseInt(arrHasta[1]) == parseInt(arrDesde[1]) &&
+      parseInt(arrHasta[2]) < parseInt(arrDesde[2])
+      ){
       setOpen(true)
         setMsn("La fecha final debe ser mayor a la fecha inicial");
       return;
@@ -435,7 +449,21 @@ setIsLoad(false);
     const endDay = parseInt(arrHasta[2]) + parseInt(arrHasta[1]) + parseInt(arrHasta[0]);
 
     //anio-mes-dia
-    if(parseInt(arrHasta[0]) < parseInt(arrDesde[0]) || parseInt(arrHasta[1]) < parseInt(arrDesde[1]) || parseInt(arrHasta[2]) < parseInt(arrDesde[2])){
+    if(
+      parseInt(arrHasta[0]) < parseInt(arrDesde[0]) || 
+      parseInt(arrHasta[1]) < parseInt(arrDesde[1]) 
+      // || 
+      // parseInt(arrHasta[2]) < parseInt(arrDesde[2])
+      ){
+      setOpen(true)
+        setMsn("La fecha final debe ser mayor a la fecha inicial");
+      return;
+    }
+    if(
+      parseInt(arrHasta[0]) == parseInt(arrDesde[0]) && 
+      parseInt(arrHasta[1]) == parseInt(arrDesde[1]) &&
+      parseInt(arrHasta[2]) < parseInt(arrDesde[2])
+      ){
       setOpen(true)
         setMsn("La fecha final debe ser mayor a la fecha inicial");
       return;
