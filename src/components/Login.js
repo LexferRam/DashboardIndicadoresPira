@@ -49,6 +49,20 @@ const Login = (props) => {
       // props.history.push("/app");
 
       try{
+
+        // validate user before call user on portal
+        let params = {
+          Cod_User: user.p_portal_username
+        }
+        let apiService = '/autenticarUserDashcotizaEmite';
+        let responseValidateUser = await axios.post(`https://emergencia24horas.segurospiramide.com/node/express/servicios/apiSucur${apiService}`, params);
+
+        if(responseValidateUser.data.Valores_Usuarios[0].INDICADOR === 'N'){
+          setOpen(true);
+          setMsn(responseValidateUser.data.Confir_Usuario)
+          return
+        }
+
         // setIsLoaded(false);
         const res = await axios.post(
           "https://segurospiramide.com/asg-api/login",
